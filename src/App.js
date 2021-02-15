@@ -1,5 +1,7 @@
 import React from "react";
 
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
+
 import Firebase from "firebase";
 import config from "./config";
 
@@ -111,24 +113,27 @@ class App extends React.Component {
               {developers.map(developer => (
                 <div
                   key={developer.uid}
-                  className="list-group-item"
-                  
+                  className="list-group-item" 
                 >
-                  
+                <div className="row">
+                  <div className="col-9">
                     <h5>{developer.name}</h5>
-                    <button
-                      onClick={() => this.removeData(developer)}
-                      className="btn btn-link"
-                    >
-                      Delete
-                    </button>
-                    <button
+                  </div>
+                  <div className="col">
+                    <icon
                       onClick={() => this.updateData(developer)}
                       className="btn btn-link"
                     >
-                      Edit
-                    </button>
-                  
+                      <AiFillEdit />
+                    </icon>
+                    <icon
+                      onClick={() => this.removeData(developer)}
+                      className="btn btn-link"
+                    >
+                      <AiFillDelete />
+                    </icon>
+                  </div>  
+                </div>
                 </div>
               ))}
             </div>
