@@ -11,7 +11,7 @@ class App extends React.Component {
     Firebase.initializeApp(config);
 
     this.state = {
-      developers: []
+      todos: []
     };
   }
 
@@ -46,38 +46,38 @@ class App extends React.Component {
     let uid = this.refs.uid.value;
 
     if (uid && name) {
-      const { developers } = this.state;
-      const devIndex = developers.findIndex(data => {
+      const { todos } = this.state;
+      const devIndex = todos.findIndex(data => {
         return data.uid === uid;
       });
-      developers[devIndex].name = name;
-      this.setState({ developers });
+      todos[devIndex].name = name;
+      this.setState({ todos });
     } else if (name) {
       const uid = new Date().getTime().toString();
-      const { developers } = this.state;
-      developers.push({ uid, name });
-      this.setState({ developers });
+      const { todos } = this.state;
+      todos.push({ uid, name });
+      this.setState({ todos });
     }
 
     this.refs.name.value = "";
     this.refs.uid.value = "";
   };
 
-  removeData = developer => {
-    const { developers } = this.state;
-    const newState = developers.filter(data => {
-      return data.uid !== developer.uid;
+  removeData = todo => {
+    const { todos } = this.state;
+    const newState = todos.filter(data => {
+      return data.uid !== todo.uid;
     });
-    this.setState({ developers: newState });
+    this.setState({ todos: newState });
   };
 
-  updateData = developer => {
-    this.refs.uid.value = developer.uid;
-    this.refs.name.value = developer.name;
+  updateData = todo => {
+    this.refs.uid.value = todo.uid;
+    this.refs.name.value = todo.name;
   };
 
   render() {
-    const { developers } = this.state;
+    const { todos } = this.state;
     return (
       <React.Fragment>
         <div className="container">
@@ -110,24 +110,24 @@ class App extends React.Component {
           <br />
           <div className="row">
             <div className="col-xl-12">
-              {developers.map(developer => (
+              {todos.map(todo => (
                 <div
-                  key={developer.uid}
+                  key={todo.uid}
                   className="list-group-item" 
                 >
                 <div className="row">
-                  <div className="col-9">
-                    <h5>{developer.name}</h5>
+                  <div className="col-10">
+                    <h5>{todo.name}</h5>
                   </div>
                   <div className="col">
                     <icon
-                      onClick={() => this.updateData(developer)}
+                      onClick={() => this.updateData(todo)}
                       className="btn btn-link"
                     >
                       <AiFillEdit />
                     </icon>
                     <icon
-                      onClick={() => this.removeData(developer)}
+                      onClick={() => this.removeData(todo)}
                       className="btn btn-link"
                     >
                       <AiFillDelete />
