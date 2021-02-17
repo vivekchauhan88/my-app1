@@ -116,16 +116,18 @@ class App extends React.Component {
                   className="list-group-item" 
                 >
                 <div className="row">
-                  <div className="col-10">
+                  <div className="col-10 col-md-10 col-sm-10">
                     <h5>{todo.name}</h5>
                   </div>
-                  <div className="col">
+                  <div className="col-1 col-md-1 col-sm-1">
                     <icon
                       onClick={() => this.updateData(todo)}
                       className="btn btn-link"
                     >
                       <AiFillEdit />
                     </icon>
+                  </div>
+                  <div className="col-1 col-md-1 col-sm-1">
                     <icon
                       onClick={() => this.removeData(todo)}
                       className="btn btn-link"
