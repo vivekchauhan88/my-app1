@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
+import { AiFillDelete } from 'react-icons/ai';
 
 import Firebase from "firebase";
 import config from "./config";
@@ -43,20 +43,14 @@ class App extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     let name = this.refs.name.value;
-    let uid = this.refs.uid.value;
+    //let uid = this.refs.uid.value;
 
-    if (uid && name) {
-      const { todos } = this.state;
-      const devIndex = todos.findIndex(data => {
-        return data.uid === uid;
-      });
-      todos[devIndex].name = name;
-      this.setState({ todos });
-    } else if (name) {
+    if (name) {
       const uid = new Date().getTime().toString();
       const { todos } = this.state;
       todos.push({ uid, name });
       this.setState({ todos });
+      console.log("create")
     }
 
     this.refs.name.value = "";
@@ -71,9 +65,19 @@ class App extends React.Component {
     this.setState({ todos: newState });
   };
 
-  updateData = todo => {
-    this.refs.uid.value = todo.uid;
-    this.refs.name.value = todo.name;
+  updateData = (todo, e) => {
+    //this.refs.uid.value = todo.uid;
+    //this.refs.name.value = todo.name;
+    let name1 = e.target.value;
+
+    const { todos } = this.state;
+      const devIndex = todos.findIndex(data => {
+        return data.uid === todo.uid;
+      });
+      console.log(name1)
+      todos[devIndex].name = name1;
+      this.setState({ todos });
+      console.log("edit")
   };
 
   render() {
@@ -117,17 +121,17 @@ class App extends React.Component {
                 >
                 <div className="row">
                   <div className="col-10 col-md-10 col-sm-10">
-                    <h5>{todo.name}</h5>
+                    <h5>
+                    <input
+                      type="text"
+                      ref="name1"
+                      className="form-control"
+                      defaultValue={todo.name}
+                      onChange={(e) => this.updateData(todo, e)}
+                    />
+                    </h5>
                   </div>
-                  <div className="col-1 col-md-1 col-sm-1">
-                    <icon
-                      onClick={() => this.updateData(todo)}
-                      className="btn btn-link"
-                    >
-                      <AiFillEdit />
-                    </icon>
-                  </div>
-                  <div className="col-1 col-md-1 col-sm-1">
+                  <div className="col-2 col-md-2 col-sm-2">
                     <icon
                       onClick={() => this.removeData(todo)}
                       className="btn btn-link"
