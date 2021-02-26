@@ -1,7 +1,5 @@
 import React from "react";
-
 import { AiFillDelete } from 'react-icons/ai';
-
 import Firebase from "firebase";
 import config from "./config";
 
@@ -26,9 +24,7 @@ class App extends React.Component {
   }
 
   writeUserData = () => {
-    Firebase.database()
-      .ref("/")
-      .set(this.state);
+    Firebase.database().ref("/").set(this.state);
     console.log("DATA SAVED");
   };
 
@@ -43,17 +39,21 @@ class App extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     let name = this.refs.name.value;
+    let day = this.refs.day.value;
     //let uid = this.refs.uid.value;
-
-    if (name) {
+    console.log("in handleSubmit")
+    console.log(name)
+    console.log(day)
+    if (name && day) {
       const uid = new Date().getTime().toString();
       const { todos } = this.state;
-      todos.push({ uid, name });
+      todos.push({ uid, name, day });
       this.setState({ todos });
       console.log("create")
     }
 
     this.refs.name.value = "";
+    this.refs.day.value = "";
     this.refs.uid.value = "";
   };
 
@@ -65,17 +65,30 @@ class App extends React.Component {
     this.setState({ todos: newState });
   };
 
-  updateData = (todo, e) => {
+  updateName = (todo, e) => {
     //this.refs.uid.value = todo.uid;
     //this.refs.name.value = todo.name;
     let name1 = e.target.value;
-
     const { todos } = this.state;
       const devIndex = todos.findIndex(data => {
         return data.uid === todo.uid;
       });
       console.log(name1)
       todos[devIndex].name = name1;
+      this.setState({ todos });
+      console.log("edit")
+  };
+
+  updateDay = (todo, e) => {
+    //this.refs.uid.value = todo.uid;
+    //this.refs.name.value = todo.name;
+    let day1 = e.target.value;
+    const { todos } = this.state;
+      const devIndex = todos.findIndex(data => {
+        return data.uid === todo.uid;
+      });
+      console.log(day1)
+      todos[devIndex].day = day1;
       this.setState({ todos });
       console.log("edit")
   };
@@ -104,6 +117,15 @@ class App extends React.Component {
                       placeholder="Add a task"
                     />
                   </div>
+                  <div className="form-group col-md-3">
+                    <input
+                      type="date"
+                      ref="day"
+                      className="form-control"
+                      placeholder="Add a deadline"
+                    />
+                  </div>
+                  
                 </div>
                 <button type="submit" className="btn btn-primary">
                   Create
@@ -120,18 +142,30 @@ class App extends React.Component {
                   className="list-group-item" 
                 >
                 <div className="row">
-                  <div className="col-10 col-md-10 col-sm-10">
+                  <div className="col-md-7">
                     <h5>
                     <input
                       type="text"
                       ref="name1"
                       className="form-control"
                       defaultValue={todo.name}
-                      onChange={(e) => this.updateData(todo, e)}
+                      onChange={(e) => this.updateName(todo, e)}
                     />
                     </h5>
                   </div>
-                  <div className="col-2 col-md-2 col-sm-2">
+                  <div className="col-md-3">
+                    <h5>
+                    <input
+                      type="date"
+                      ref="day1"
+                      className="form-control"
+                      defaultValue={todo.day}
+                      onChange={(e) => this.updateDay(todo, e)}
+                    />
+                    </h5>
+                  </div>
+                  
+                  <div className="col-md-2">
                     <icon
                       onClick={() => this.removeData(todo)}
                       className="btn btn-link"
