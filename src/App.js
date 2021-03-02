@@ -2,6 +2,7 @@ import React from "react";
 import { AiFillDelete } from 'react-icons/ai';
 import Firebase from "firebase";
 import config from "./config";
+import moment from "moment";
 
 class App extends React.Component {
   constructor(props) {
@@ -41,9 +42,6 @@ class App extends React.Component {
     let name = this.refs.name.value;
     let day = this.refs.day.value;
     //let uid = this.refs.uid.value;
-    console.log("in handleSubmit")
-    console.log(name)
-    console.log(day)
     if (name && day) {
       const uid = new Date().getTime().toString();
       const { todos } = this.state;
@@ -117,12 +115,13 @@ class App extends React.Component {
                       placeholder="Add a task"
                     />
                   </div>
-                  <div className="form-group col-md-3">
+                  <div className="form-group col-md-4">
                     <input
-                      type="date"
+                      type="datetime-local"
                       ref="day"
                       className="form-control"
                       placeholder="Add a deadline"
+                      min={moment().format("YYYY-MM-DDThh:mm")}
                     />
                   </div>
                   
@@ -142,7 +141,7 @@ class App extends React.Component {
                   className="list-group-item" 
                 >
                 <div className="row">
-                  <div className="col-md-7">
+                  <div className="col-md-6">
                     <h5>
                     <input
                       type="text"
@@ -153,14 +152,15 @@ class App extends React.Component {
                     />
                     </h5>
                   </div>
-                  <div className="col-md-3">
+                  <div className="col-md-4">
                     <h5>
                     <input
-                      type="date"
+                      type="datetime-local"
                       ref="day1"
                       className="form-control"
                       defaultValue={todo.day}
                       onChange={(e) => this.updateDay(todo, e)}
+                      min={moment().format("YYYY-MM-DDThh:mm")}
                     />
                     </h5>
                   </div>
