@@ -25,12 +25,12 @@ class Home extends React.Component {
   }
 
   writeUserData = () => {
-    Firebase.database().ref("/").set(this.state);
+    Firebase.database().ref("/user/").set(this.state);
     console.log("DATA SAVED");
   };
 
   getUserData = () => {
-    let ref = Firebase.database().ref("/");
+    let ref = Firebase.database().ref("/user/");
     ref.on("value", snapshot => {
       const state = snapshot.val();
       this.setState(state);
@@ -125,7 +125,7 @@ class Home extends React.Component {
                     />
                   </div>
                   <div className="form-group col-md-2">
-                    <button onClick={() => app.auth().signOut()}>Sign out</button>
+                    <button onClick={() => Firebase.auth().signOut()}>Sign out</button>
                   </div>
                 </div>
                 <button type="submit" className="btn btn-primary">

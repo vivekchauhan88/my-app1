@@ -4,8 +4,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import Register from "./Register";
+import Signin from "./Signin";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
+import PasswordReset from "./PasswordReset";
 
 const App = () => {
   return (
@@ -13,8 +16,9 @@ const App = () => {
       <Router>
         <div>
           <PrivateRoute exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Signin} />
+          <Route exact path="/signup" component={Register} />
+          <Route exact path="/reset" component={PasswordReset} />
         </div>
       </Router>
     </AuthProvider>
