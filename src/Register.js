@@ -10,21 +10,21 @@ function Register(){
         var email = event.target.email.value;
         var password = event.target.password.value;
         firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in 
-    var user = userCredential.user;
-    console.log(user.email)
-    //firebase.auth().currentUser.sendEmailVerification()
-    user.sendEmailVerification()
-    history.push("/")
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.error(error)
-    alert(error)
-    // ..
-  });
+        .then((userCredential) => {
+          // Signed in 
+          var user = userCredential.user;
+          console.log(user.email)
+          //firebase.auth().currentUser.sendEmailVerification()
+          user.sendEmailVerification()
+          history.push("/")
+        })
+        .catch((error) => {
+          //var errorCode = error.code;
+          var errorMessage = error.message;
+          console.error(errorMessage)
+          alert(error)
+          // ..
+        });
     }
     return (
         <div>

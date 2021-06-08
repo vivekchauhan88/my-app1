@@ -1,14 +1,17 @@
 import React from "react";
+//import { AuthContext } from "./Auth";
 import { AiFillDelete } from 'react-icons/ai';
 import Firebase from "firebase";
 //import config from "./config";
 import moment from "moment";
-import app from "./base.js";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     //Firebase.initializeApp(config);
+    //const {currentUser} = useContext(AuthContext);
+    //var message = currentUser?currentUser.email:null
+    //console.log("From Home: "+message)
     this.state = {
       todos: []
     };

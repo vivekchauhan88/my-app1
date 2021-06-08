@@ -10,20 +10,20 @@ function Signin(){
         var email = event.target.email.value;
         var password = event.target.password.value;
         firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      var user = userCredential.user;
-      console.log(user.email)
-      //console.log(user.emailVerified)
-      history.push("/")
-      // ...
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.error(error)
-      alert(error)
-    });
+        .then((userCredential) => {
+          // Signed in
+          var user = userCredential.user;
+          console.log(user.email)
+          //console.log(user.emailVerified)
+          history.push("/")
+          // ...
+        })
+        .catch((error) => {
+          //var errorCode = error.code;
+          var errorMessage = error.message;
+          console.error(errorMessage)
+          alert(error)
+        });
     }
 
     function resetPage(event) {

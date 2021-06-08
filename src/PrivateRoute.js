@@ -4,6 +4,8 @@ import { AuthContext } from "./Auth";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const {currentUser} = useContext(AuthContext);
+  var message = currentUser?currentUser.email:null
+  console.log("From PrivateRoute: "+message)
   return (
     <Route
       {...rest}
