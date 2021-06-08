@@ -15,8 +15,9 @@ function Signin(){
           var user = userCredential.user;
           console.log(user.email)
           //console.log(user.emailVerified)
-          history.push("/")
+          history.replace("/")
           // ...
+
         })
         .catch((error) => {
           //var errorCode = error.code;

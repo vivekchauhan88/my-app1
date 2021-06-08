@@ -13,7 +13,7 @@ const App = () => {
     <AuthProvider>
       <Router>
         <div>
-          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Signin} />
           <Route exact path="/signup" component={Register} />
           <Route exact path="/reset" component={PasswordReset} />

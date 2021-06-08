@@ -7,16 +7,18 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [pending, setPending] = useState(true);
 
-  /*useEffect(() => {
+  useEffect(() => {
     app.auth().onAuthStateChanged((user) => {
-      setCurrentUser(user)
-      setPending(false)
+      setCurrentUser(user);
+      setPending(false);
     });
-  }, []);*/
+  }, []);
 
-  /*if(pending){
+  if(pending){
     return <>Loading...</>
-  }*/
+  }
+
+  console.log('Auth coming');
 
   return (
     <AuthContext.Provider
