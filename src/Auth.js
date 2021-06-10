@@ -15,10 +15,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   if(pending){
-    return <>Loading...</>
+    return <>Logging In...</>
   }
-
-  console.log('Auth coming');
 
   return (
     <AuthContext.Provider
