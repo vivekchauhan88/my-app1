@@ -11,7 +11,7 @@ const Home = () => {
   const [name, setName] = useState("");
   //const [day, setDay] = useState("");
   const {currentUser} = useContext(AuthContext);
-  //console.log("From home: "+currentUser.email);
+  //console.log("From home: "+currentUser.emai
   //console.log(todos?"todos is not null":"todos is null here as well")
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Home = () => {
   const writeUserData = () => {
     let path = "/"+currentUser+"/";
     console.log(todos);
-    Firebase.database().ref("/").set(todos);
+    Firebase.database().ref(path).set(todos);
     //console.log("DATA SAVED");
   };
 

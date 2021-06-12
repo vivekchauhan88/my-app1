@@ -6,6 +6,7 @@ const Todo = (props) => {
   const removeData = () => {
 
   }
+
   return (
     <>
       <div
@@ -24,19 +25,17 @@ const Todo = (props) => {
             </h5>
           </div>
           <div className="col-md-4">
-          <h5>
-          <input
-            type="datetime-local"
-            className="form-control"
-            defaultValue={props.todo.day}
-            //onChange={(e) => updateDay(todo, e)}
-            min={moment().format("YYYY-MM-DDThh:mm")}
-          />
-          </h5>
-        </div>
+            <input
+              type="datetime-local"
+              className="form-control"
+              defaultValue={props.todo.day}
+              //onChange={(e) => updateDay(todo, e)}
+              min={moment().format("YYYY-MM-DDThh:mm")}
+            />
+          </div>
         <div className="col-md-2">
           <div
-            onClick={() => props.removeData}
+            //onClick={() => props.removeData}
             className="btn btn-link"
           >
             <AiFillDelete />
